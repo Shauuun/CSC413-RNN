@@ -10,6 +10,9 @@ import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 from RNN_Network import RNNAttention
+from data_aug import *
+
+
 
 
 # Load raw data and process it
@@ -17,19 +20,18 @@ def process_data(file_path, num_samples=10000):
     texts = []
     labels = []
 
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding='utf-8') as file:
         for idx, line in enumerate(file):
             if idx >= num_samples:
                 break
 
             data = json.loads(line)
-            text = data["text"]
+            text = data["text"].strip().replace('\n', '').replace('\r','')
             stars = data["stars"]
             label = 1 if stars >= 4 else 0
 
             texts.append(text)
             labels.append(label)
-
     return texts, labels
 
 
@@ -94,7 +96,7 @@ def get_accuracy(model, data):
     for inputs, labels in loader:
         output = model(inputs)
         pred = output.max(1, keepdim=True)[1]
-        print(pred)
+        # print(pred)
         correct += pred.eq(labels.view_as(pred)).sum().item()
         total += inputs.shape[0]
 
@@ -115,7 +117,7 @@ def train(model, train_data, valid_data, batch_size=32, weight_decay=0.0,
         for inputs, labels in iter(train_loader):
             if inputs.size()[0] < batch_size:
                 continue  # skip the last batch which in many case is smaller than the rest
-            print(inputs.shape)
+            # print(inputs.shape)
 
             model.train()  # annotate model for training
             out = model(inputs)
@@ -165,7 +167,7 @@ def overfit(model, over_fit_data, learn_rate, batch_size, num_epochs=1):
 
 if __name__ == "__main__":
     # Load and process the data
-    raw_data = 'archive/yelp_academic_dataset_review.json'
+    raw_data = 'archive\yelp_academic_dataset_review.json'
     num_data = 100
     texts, labels = process_data(raw_data, num_samples=num_data)
 
@@ -184,12 +186,17 @@ if __name__ == "__main__":
     # Define sequence length for padding
     seq_length = 200
 
+
+    # train data agumentation
+    train_texts, train_labels = data_augment(train_texts,train_labels)
+
     # Create datasets and data loaders
     train_dataset = TextDataset(train_texts, train_labels, vocab, seq_length)
     val_dataset = TextDataset(val_texts, val_labels, vocab, seq_length)
     test_dataset = TextDataset(test_texts, test_labels, vocab, seq_length)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cpu")
 
     embedding_dim = 64
     hidden_dim = 64
