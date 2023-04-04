@@ -11,3 +11,25 @@ Model Examples:
 
 Data Source:
 The souce of our data set comes from a Yelp dataset(https://www.yelp.com/dataset). The dataset contains over 6 million reviews, along with business and user information.
+
+Data Summary:
+
+Data Transformation:
+
+Data Split:
+We used a 60/20/20 training, validation, testing split. We used this split because we wanted a large dataset for training to identify details and patterns. The 20% validation is sufficient to fine tune and the 20% testing is sufficient to evaluate performance.
+
+Training Curve:
+
+Hyperparameter Tuning:
+
+Quantitative Measures:
+
+Quantitative and Qualitative Results:
+
+Justification of Results:
+
+Ethical Consideration:
+Some ethical issues could be the distribution association. For example if the training set has many negative reviews for in a certain location, it could associate that neighborhood with negative reviews. Also, since the model can only classify reviews as positive or negative, it could potentially not encompass the full idea of the review. 
+
+Authors:
