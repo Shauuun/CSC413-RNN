@@ -195,14 +195,19 @@ if __name__ == "__main__":
     val_dataset = TextDataset(val_texts, val_labels, vocab, seq_length)
     test_dataset = TextDataset(test_texts, test_labels, vocab, seq_length)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # device = torch.device("cpu")
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
 
     embedding_dim = 64
     hidden_dim = 64
     output_dim = 2
+    batch_size = 32
+    num_head = 8
+    learn_rate = 0.01
+    num_epochs = 10
 
     model = RNNAttention(vocab_size=len(vocab), embedding_dim=embedding_dim, hidden_dim=hidden_dim,
-                         output_dim=output_dim)
+                        output_dim=output_dim, num_heads=num_head)
     model.to(device)
-    overfit(model, train_dataset, 0.1, 50, 100)
+    train(model, train_dataset, val_dataset, learning_rate=learn_rate, batch_size=batch_size,
+        num_epochs=num_epochs)

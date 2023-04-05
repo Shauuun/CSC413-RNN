@@ -29,13 +29,16 @@ def synonym_replacement(selected_data,data_dic):
     after_replace_data = {}
     for sentence in selected_data:
         new_sentence = sentence[:]
-        random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
-        chosen_words = random.sample(random_words, 2)
-        for chosen_word in chosen_words:
-            synonyms = find_synonyms(chosen_word)
-            if len(synonyms) >= 1:
-                synonym_word = random.choice(list(synonyms))
-                new_sentence = new_sentence.replace(chosen_word,synonym_word)
+        try:
+            random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
+            chosen_words = random.sample(random_words, 2)
+            for chosen_word in chosen_words:
+                synonyms = find_synonyms(chosen_word)
+                if len(synonyms) >= 1:
+                    synonym_word = random.choice(list(synonyms))
+                    new_sentence = new_sentence.replace(chosen_word,synonym_word)
+        except:
+            continue
         after_replace_data[new_sentence] = data_dic[sentence]
     return after_replace_data
 
@@ -57,17 +60,20 @@ def find_synonyms(word):
 def random_word_swap(selected_data,data_dic):
     after_swap_data = {}
     for sentence in selected_data:
-        random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
-        chosen_words = random.sample(random_words, 2)
-        words_list = re.findall(r"([\w']+|[^\w\s]+)", sentence)
-        if chosen_words[0] in words_list and chosen_words[1] in words_list:
-            index1 = words_list.index(chosen_words[0])
-            index2 = words_list.index(chosen_words[1])
-            temp = words_list[index1]
-            words_list[index1] = words_list[index2]
-            words_list[index2] = temp
-            new_sentence = " ".join(words_list)
-            after_swap_data[new_sentence] = data_dic[sentence]
+        try:
+            random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
+            chosen_words = random.sample(random_words, 2)
+            words_list = re.findall(r"([\w']+|[^\w\s]+)", sentence)
+            if chosen_words[0] in words_list and chosen_words[1] in words_list:
+                index1 = words_list.index(chosen_words[0])
+                index2 = words_list.index(chosen_words[1])
+                temp = words_list[index1]
+                words_list[index1] = words_list[index2]
+                words_list[index2] = temp
+                new_sentence = " ".join(words_list)
+                after_swap_data[new_sentence] = data_dic[sentence]
+        except:
+            continue
     return after_swap_data
 
 # Randomly insert a word to sentence
@@ -75,25 +81,33 @@ def word_insertion(selected_data,data_dic):
     after_insert_data = {}
     for sentence in selected_data:
         new_sentence = sentence[:]
-        random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
-        chosen_words = random.sample(random_words, 2)
-        if chosen_words[0] in new_sentence :
-            new_sentence = new_sentence.replace(chosen_words[0], "{} {}".format(chosen_words[1], chosen_words[0]),1)
-            after_insert_data[new_sentence] = data_dic[sentence]
+        try:
+            random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
+            if len(random_words) >= 2:
+                chosen_words = random.sample(random_words, 2)
+                if chosen_words[0] in new_sentence :
+                    new_sentence = new_sentence.replace(chosen_words[0], "{} {}".format(chosen_words[1], chosen_words[0]),1)
+                    after_insert_data[new_sentence] = data_dic[sentence]
+        except:
+            continue
     return after_insert_data
 
 # Randomly delete a word from sentence
 def word_deletion(selected_data,data_dic):
     after_delete_data = {}
     for sentence in selected_data:
-        random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
-        chosen_words = random.sample(random_words, 2)
-        words_list = re.findall(r"([\w']+|[^\w\s]+)", sentence)
-        if chosen_words[0] in words_list and chosen_words[1] in words_list:
-            words_list.remove(chosen_words[0])
-            words_list.remove(chosen_words[1])
+        try:
+            random_words = [word for word in  re.findall(r'\w+', sentence) if word not in stop_words]
+            chosen_words = random.sample(random_words, 2)
+            words_list = re.findall(r"([\w']+|[^\w\s]+)", sentence)
+            if chosen_words[0] in words_list: 
+                words_list.remove(chosen_words[0])
+            if chosen_words[1] in words_list:
+                words_list.remove(chosen_words[1])
             new_sentence = " ".join(words_list)
             after_delete_data[new_sentence] = data_dic[sentence]
+        except:
+            continue
     return after_delete_data
 
 # add augmented data with original data
