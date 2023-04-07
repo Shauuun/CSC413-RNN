@@ -58,7 +58,7 @@ The dataset was split into train (60%), validation (20%), and test sets (20%) us
 
 
 ## Hyperparameter Tuning
-
+We tuned our hyperparameters by monitering the performance of our training and validation. To tune the learn_rate and batch_size, we looked at the speed at which the training accuracy and validation improved, the rate at which they improved, and the final training accuracy acheived. With respect to num_epochs, we tuned it by testing starting at around 10-20. It was noted that when we go higher than that, the model begins to overfit.
 
 ## Quantitative Measure
 The model performance was evaluated by simply comparing the predicted class with the ground truth.
