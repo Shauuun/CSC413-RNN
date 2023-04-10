@@ -1,5 +1,7 @@
 import json
 import torch
+import nltk
+nltk.download('punkt')
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
@@ -167,13 +169,16 @@ def overfit(model, over_fit_data, learn_rate, batch_size, num_epochs=1):
 
 if __name__ == "__main__":
     # Load and process the data
-    raw_data = 'archive\yelp_academic_dataset_review.json'
+    raw_data = 'archive/yelp_academic_dataset_review.json'
     num_data = 100
     texts, labels = process_data(raw_data, num_samples=num_data)
 
     # First, split the data into train set (60%) and a temporary test set (40%)
     train_texts, temp_test_texts, train_labels, temp_test_labels = train_test_split(texts, labels, test_size=0.2,
                                                                                     random_state=42)
+    print(train_texts[20:30])
+    print(train_labels[20:30])
+    
 
     # Now, split the temporary test set into validation set (50%) and test set (50%)
     val_texts, test_texts, val_labels, test_labels = train_test_split(temp_test_texts, temp_test_labels, test_size=0.5,
