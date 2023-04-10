@@ -32,7 +32,7 @@ The hyperparameters used in the model are:
 
 
 ## Model Examples
-
+There is a sentence in the training set "It is a little on the pricier side but for all the experience you get and the quality, it is worth it." and it is labelled as 0. For a negative review. But our model labels it as 1, a positive review. Though it's considered as unsuccessful labelling, the review itself is positive nonetheless. 'Went for lunch. Beef brisket sandwich was awesome. So juicy and tender. Pulled pork was was just as good!' Was labelled a 1 or a positive review. That was a successful prediction.
 
 ## Data Source
 The souce of our data set comes from a Yelp dataset(https://www.yelp.com/dataset). The dataset contains over 6 million reviews, along with business and user information.
