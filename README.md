@@ -122,8 +122,11 @@ The model achieved an accuracy of 85.1% on the test set.
 
 ## Justification of Results
 Based on the result, our model has achieved a very high accuracy on the test set (85.1%), meaning it is able to well find the patterns in the training set and well generalize on the test set. This is an expected result from both model structure and hyperparameter tuning.
+
 For model structure, LSTM is well-suited for processing sequential data, such as text. It is able to capture long-term dependencies in the input data, which is important for understanding the context of a review and how the sentiment of one sentence may be influenced by the sentiment of previous sentences. The LSTM model can also handle variable-length inputs and outputs, which is useful for processing text data that can have varying lengths.
+
 Additionally ,we used the attention mechnism to allow the model to selectively focus on specific parts of the input data, giving more weight to the parts that are most relevant to the prediction. This is particularly important for text data, where different words and phrases can have different levels of importance in determining the sentiment of a review. The attention mechanism can help the model to identify and weigh the most important features of the input data, leading to more accurate predictions.
+
 Combining LSTM and Attention can be especially effective for sentiment analysis tasks, as the LSTM can capture long-term dependencies in the input data, while the attention mechanism can help the model to focus on the most relevant parts of the input. By using both techniques together, the model can better understand the context of a review and make more accurate predictions about its sentiment.
 
 For hyperparameter tuning. we have discussed above we chose the parameters that performed best on the valid set to optimize the bias-variance tradeoff.
@@ -152,5 +155,7 @@ Our model is to provide restaurants with an automated system to analyze customer
 
 ## Authors
 Aoqi long: LSTM Model + Attention Mechanism Implementation
+
 Zechuan Liu: Data Summary + Data Augmentation + Training Implementation
+
 Hanxin Yuan: Hyperparameter Tuning + Result Interpretation + Readme Write-up
