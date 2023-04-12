@@ -32,6 +32,7 @@ Use threshold to the determine whether the review is positive or negative.
 
 ## Model Examples
 Here is a preview of the test set result. The test accuracy of out best model is 85.1%.
+![image](https://user-images.githubusercontent.com/77242297/231547960-b6bf2dfd-3f3b-4b10-93f0-e52784358549.png)
 
 ### Successful exmaple:
 Input: 'I really enjoyed this place. I wish I could give it 4.5 stars, but couldn\'t give it 5. Had steamed vegetable dumplings, which were very good. For my entree, it was the pad kra pao. I ordered it "Thai Hot", but I don\'t think they really believed me. Good thing they brought extra hot pepper flakes. I hate to leave a Thai restaurant when my mouth isn\'t on fire. The dish was good, but just a bit dry. I really did enjoy it, but it couldn\'t earn top marks.'
@@ -124,6 +125,7 @@ Based on the result, our model has achieved a very high accuracy on the test set
 
 We also produces a confusion matrix to further interpret the result from a business perspective. 
 |          | Positive | Negative |
+| -------- | -------- | -------- |
 | Positive |    419   |    174   |
 | Negative |    124   |   1283   |
 
