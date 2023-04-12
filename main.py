@@ -12,7 +12,7 @@ import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 from RNN_Network import RNNAttention
-from data_aug import *
+from Dat_Augmentation import *
 
 
 
@@ -166,6 +166,12 @@ def overfit(model, over_fit_data, learn_rate, batch_size, num_epochs=1):
     train(model, over_fit_data, valid_data, learning_rate=learn_rate, batch_size=batch_size,
           num_epochs=num_epochs)
 
+def test(model, test_data, batch_size=1):
+
+    iters, test_acc = [], []
+    n = 0
+    test_acc.append(get_accuracy(model.to(device), test_data))
+    print("test Accuracy: {}".format(test_acc[-1]))
 
 if __name__ == "__main__":
     # Load and process the data
@@ -206,8 +212,8 @@ if __name__ == "__main__":
     embedding_dim = 64
     hidden_dim = 64
     output_dim = 2
-    batch_size = 32
     num_head = 8
+    batch_size = 16
     learn_rate = 0.01
     num_epochs = 10
 
@@ -216,3 +222,4 @@ if __name__ == "__main__":
     model.to(device)
     train(model, train_dataset, val_dataset, learning_rate=learn_rate, batch_size=batch_size,
         num_epochs=num_epochs)
+    #test(model,test_dataset)
