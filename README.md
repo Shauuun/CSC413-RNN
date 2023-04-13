@@ -159,3 +159,6 @@ Aoqi long: LSTM Model + Attention Mechanism Implementation
 Zechuan Liu: Data Summary + Data Augmentation + Training Implementation
 
 Hanxin Yuan: Hyperparameter Tuning + Result Interpretation + Readme Write-up
+
+Yi Fei Pang: 
+Debugging + Result Interpretation + ReadMe Write-up
