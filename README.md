@@ -68,6 +68,7 @@ To make the model more robust and capable of handling a variety of inputs, we us
 The dataset was split into train (60%), validation (20%), and test sets (20%) using sklearn's train_test_split function. We used this split because we wanted a large dataset for training to identify details and patterns. The 20% validation is sufficient to fine tune and the 20% testing is sufficient to evaluate performance.
 
 ## Training Curve
+![image](https://user-images.githubusercontent.com/71288561/231910554-5249c93d-2fa6-432e-9b4b-a979713fb796.png)
 
 
 ## Hyperparameter Tuning
@@ -159,3 +160,6 @@ Aoqi long: LSTM Model + Attention Mechanism Implementation
 Zechuan Liu: Data Summary + Data Augmentation + Training Implementation
 
 Hanxin Yuan: Hyperparameter Tuning + Result Interpretation + Readme Write-up
+
+Yi Fei Pang: 
+Debugging + Result Interpretation + ReadMe Write-up
