@@ -1,7 +1,5 @@
 import json
 import torch
-import nltk
-nltk.download('punkt')
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
@@ -12,7 +10,7 @@ import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 from RNN_Network import RNNAttention
-from Dat_Augmentation import *
+from Data_Augmentation import *
 
 
 
@@ -88,20 +86,17 @@ def build_vocab(texts, max_vocab_size):
 
 
 def get_accuracy(model, data):
-    # note: why should we use a larger batch size here?
     loader = torch.utils.data.DataLoader(data, batch_size=256)
 
-    model.eval()  # annotate model for evaluation (why do we need to do this?)
+    model.eval()  
 
     correct = 0
     total = 0
     for inputs, labels in loader:
         output = model(inputs)
         pred = output.max(1, keepdim=True)[1]
-        # print(pred)
         correct += pred.eq(labels.view_as(pred)).sum().item()
         total += inputs.shape[0]
-
     return correct / total
 
 
@@ -109,7 +104,6 @@ def train(model, train_data, valid_data, batch_size=32, weight_decay=0.0,
           learning_rate=0.001, num_epochs=7, momentum=0.9):
     loss_fnc = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=momentum, weight_decay=weight_decay)
-
     iters, losses, train_acc, val_acc = [], [], [], []
     n = 0
     # loading data
@@ -175,15 +169,12 @@ def test(model, test_data, batch_size=1):
 
 if __name__ == "__main__":
     # Load and process the data
-    raw_data = 'archive/yelp_academic_dataset_review.json'
-    num_data = 100
+    raw_data =  'archive\yelp_academic_dataset_review.json'
+    num_data = 20000
     texts, labels = process_data(raw_data, num_samples=num_data)
-
     # First, split the data into train set (60%) and a temporary test set (40%)
     train_texts, temp_test_texts, train_labels, temp_test_labels = train_test_split(texts, labels, test_size=0.2,
                                                                                     random_state=42)
-    print(train_texts[20:30])
-    print(train_labels[20:30])
     
 
     # Now, split the temporary test set into validation set (50%) and test set (50%)
