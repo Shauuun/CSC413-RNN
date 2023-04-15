@@ -172,6 +172,9 @@ Debugging + Result Interpretation + ReadMe Write-up
 
 ## Reference and Citation
 [1] Rush, A. (2018, April 3). The Annotated Transformer. The annotated transformer. Retrieved April 15, 2023, from https://nlp.seas.harvard.edu/2018/04/03/attention.html 
+
 [2] Canziani, A. (n.d.). Deep learning. Attention and the Transformer · Deep Learning. Retrieved April 15, 2023, from https://atcold.github.io/pytorch-Deep-Learning/en/week12/12-3/ 
+
 [3] Huang, Y.-H. (2020, June 7). Attention-is-all-you-need-pytorch/sublayers.py at 132907dd272e2cc92e3c10e6c4e783a87ff8893d · jadore801120/attention-IS-all-you-need-pytorch. GitHub. Retrieved April 15, 2023, from https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/132907dd272e2cc92e3c10e6c4e783a87ff8893d/
+
 [4] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017, December 6). Attention is all you need. arXiv.org. Retrieved April 15, 2023, from https://arxiv.org/abs/1706.03762 
